@@ -173,7 +173,9 @@ export function renderApp() {
     <!-- Header -->
     <header class="header">
       <nav class="nav container">
-        <div class="nav__logo">CALLITAE</div>
+        <a href="#inicio" class="nav__logo">
+          <img src="/assets/logos/logo-calli.png" alt="CALLITAE - Tamal Artesanal y Especializado" class="nav__logo-img">
+        </a>
         <ul class="nav__menu">
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#productos">Productos</a></li>
