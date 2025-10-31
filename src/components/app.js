@@ -398,7 +398,7 @@ export function renderApp() {
           <h2>Hecho en México</h2>
         </div>
         <div class="hecho-mexico">
-          <img src="/assets/logos/hecho-en-mexico.png" alt="Distintivo Hecho en México" 
+          <img src="/assets/logos/hecho.png" alt="Distintivo Hecho en México" 
                style="max-width: 250px; height: auto; display: block; margin: 0 auto 1.5rem;">
           <p style="font-size: 1rem; line-height: 1.8;">
             Distintivo oficial otorgado por la <strong>Secretaría de Economía</strong>
