@@ -340,45 +340,279 @@ a {
     position: relative;
     z-index: 2;
     width: 100%;
+    padding: 2rem 0;
+  }
+
+  // Badge superior
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 2rem;
+    animation: fadeInDown 1s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  // Título principal CALLITAE
+  &__title {
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-main {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      font-family: $font-heading;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFD15C 50%, #FF9A00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      position: relative;
+      display: inline-block;
+      filter: drop-shadow(0 0 30px rgba(255, 209, 92, 0.5));
+
+      &::before {
+        content: 'CALLITAE';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 209, 92, 0.3) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        z-index: -1;
+        filter: blur(20px);
+        opacity: 0.8;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, $radiant-yellow, transparent);
+        border-radius: 2px;
+        animation: expandLine 1.5s ease-out 0.5s both;
+      }
+    }
+  }
+
+  // Subtítulo principal
+  &__subtitle-main {
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
+    font-weight: 700;
+    font-family: $font-heading;
+    color: white;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1.2s ease-out;
+    text-shadow: 3px 3px 20px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 0, 0, 0.4);
+    line-height: 1.3;
+
+    .hero__accent {
+      color: $radiant-yellow;
+      text-shadow: 0 0 20px rgba(255, 209, 92, 0.8), 2px 2px 10px rgba(0, 0, 0, 0.6);
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: '🥟';
+        position: absolute;
+        right: -40px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2em;
+        animation: bounce 2s ease-in-out infinite;
+      }
+    }
+  }
+
+  // Descripción
+  &__description {
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    margin-bottom: 3rem;
+    opacity: 0.98;
+    position: relative;
+    z-index: 2;
+    line-height: 1.9;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    animation: fadeInUp 1.4s ease-out;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.98);
+  }
+
+  // CTAs
+  &__cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    animation: fadeInUp 1.6s ease-out;
+    position: relative;
+    z-index: 2;
+  }
+
+  // Scroll indicator
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    animation: bounceDown 2s ease-in-out infinite;
+    opacity: 0.8;
+    cursor: pointer;
+    z-index: 2;
+
+    &:hover {
+      opacity: 1;
+      transform: translateX(-50%) scale(1.2);
+    }
   }
 
   @media (min-width: 768px) {
     padding: 12rem 0;
     min-height: 100vh;
+
+    &__badge {
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+    }
+
+    &__subtitle-main {
+      .hero__accent::after {
+        right: -50px;
+        font-size: 1.3em;
+      }
+    }
+
+    &__cta {
+      gap: 2rem;
+    }
   }
 
-  &__title {
-    margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 2;
-    animation: fadeInUp 1s ease-out;
-  }
-
-  &__subtitle {
-    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
-    margin-bottom: 3rem;
-    opacity: 0.98;
-    position: relative;
-    z-index: 2;
-    line-height: 1.8;
-    max-width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: 300;
-    letter-spacing: 0.01em;
-    animation: fadeInUp 1.2s ease-out;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  }
-
+  // Animaciones
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes expandLine {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 150px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(-50%) scale(1);
+    }
+    50% {
+      transform: translateY(-50%) scale(1.2);
+    }
+  }
+
+  @keyframes bounceDown {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(10px);
+    }
+  }
+}
+
+// Botones especiales del hero
+.btn {
+  &--hero-primary {
+    padding: 1.25rem 3rem;
+    font-size: 1.15rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, $primary-orange 0%, $bright-orange 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(255, 154, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: linear-gradient(135deg, $bright-orange 0%, $primary-orange 100%);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(255, 154, 0, 0.5), inset 0 0 25px rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    span:first-child {
+      font-size: 1.3em;
+      animation: bounce 2s ease-in-out infinite;
+    }
+  }
+
+  &--hero-secondary {
+    padding: 1.25rem 3rem;
+    font-size: 1.15rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3), inset 0 0 25px rgba(255, 255, 255, 0.2);
     }
   }
 }

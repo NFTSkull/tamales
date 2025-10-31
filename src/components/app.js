@@ -193,15 +193,28 @@ export function renderApp() {
       </video>
       <div class="hero__overlay"></div>
       <div class="container hero__content">
-        <h1 class="hero__title">CALLITAE</h1>
-        <h2 class="hero__title" style="font-size: clamp(1.5rem, 3vw, 2.5rem); margin-top: 1rem;">Tamal Artesanal y Especializado</h2>
-        <p class="hero__subtitle">
+        <div class="hero__badge">🥟 Tamales Artesanales</div>
+        <h1 class="hero__title">
+          <span class="hero__title-main">CALLITAE</span>
+        </h1>
+        <h2 class="hero__subtitle-main">
+          <span class="hero__accent">Tamal</span> Artesanal y Especializado
+        </h2>
+        <p class="hero__description">
           Auténtico sabor mexicano con tamales artesanales de alta calidad, 
           elaborados con ingredientes selectos y técnicas tradicionales.
         </p>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="#productos" class="btn">Ver Nuestros Tamales</a>
-          <a href="#nosotros" class="btn btn--secondary">Conócenos</a>
+        <div class="hero__cta">
+          <a href="#productos" class="btn btn--hero-primary">
+            <span>🥟</span>
+            <span>Ver Nuestros Tamales</span>
+          </a>
+          <a href="#nosotros" class="btn btn--hero-secondary">
+            <span>Conócenos</span>
+          </a>
+        </div>
+        <div class="hero__scroll-indicator">
+          <span>↓</span>
         </div>
       </div>
     </section>
