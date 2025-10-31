@@ -417,9 +417,11 @@ export function renderApp() {
         <div class="section-title">
           <h2>Contáctanos</h2>
         </div>
-        <div style="max-width: 700px; margin: 0 auto;">
-          <div class="info-box" style="text-align: center;">
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">
+
+        <!-- Información de Contacto -->
+        <div style="max-width: 900px; margin: 0 auto 5rem;">
+          <div class="contact-info">
+            <p class="contact-info__intro">
               Para realizar tu pedido o solicitar información sobre nuestros tamales artesanales, 
               contáctanos a través de los siguientes medios:
             </p>
@@ -460,10 +462,195 @@ export function renderApp() {
                 </div>
               </div>
             </div>
-            <div style="margin-top: 2rem;">
-              <a href="mailto:contacto@callitae.com" class="btn">Enviar un Mensaje</a>
-            </div>
           </div>
+        </div>
+
+        <!-- Formulario de Pedido -->
+        <div class="order-form-container">
+          <div class="order-form-header">
+            <h3 class="order-form-header__title">Realizar Pedido</h3>
+            <p class="order-form-header__subtitle">Selecciona los tamales que deseas ordenar y completa tus datos</p>
+          </div>
+
+          <form id="orderForm" class="order-form">
+            <!-- Datos del Cliente -->
+            <div class="form-section">
+              <h4 class="form-section__title">Datos de Contacto</h4>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="nombre" class="form-label">Nombre Completo *</label>
+                  <input type="text" id="nombre" name="nombre" class="form-input" required placeholder="Tu nombre completo">
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-label">Email *</label>
+                  <input type="email" id="email" name="email" class="form-input" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                  <label for="telefono" class="form-label">Teléfono *</label>
+                  <input type="tel" id="telefono" name="telefono" class="form-input" required placeholder="Tu número de teléfono">
+                </div>
+                <div class="form-group">
+                  <label for="direccion" class="form-label">Dirección de Entrega *</label>
+                  <textarea id="direccion" name="direccion" class="form-input form-textarea" required rows="3" placeholder="Dirección completa donde entregar el pedido"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="fecha-entrega" class="form-label">Fecha de Entrega Deseada *</label>
+                  <input type="date" id="fecha-entrega" name="fecha-entrega" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label for="comentarios" class="form-label">Comentarios Adicionales</label>
+                  <textarea id="comentarios" name="comentarios" class="form-input form-textarea" rows="3" placeholder="Instrucciones especiales, alergias, preferencias, etc."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Productos Salados -->
+            <div class="form-section">
+              <h4 class="form-section__title">Tamales Gourmet Salados</h4>
+              <div class="products-selector">
+                ${productos.salados.map(producto => `
+                  <div class="product-selector-item">
+                    <div class="product-selector-item__info">
+                      <h5 class="product-selector-item__name">${producto.nombre}</h5>
+                      <p class="product-selector-item__desc">${producto.ingredientes}</p>
+                    </div>
+                    <div class="product-selector-item__controls">
+                      <button type="button" class="quantity-btn quantity-btn--minus" data-product="salado-${producto.id}">−</button>
+                      <input type="number" 
+                             id="salado-${producto.id}" 
+                             name="salado-${producto.id}" 
+                             class="quantity-input" 
+                             min="0" 
+                             value="0" 
+                             data-product-name="${producto.nombre}"
+                             data-product-type="Salado">
+                      <button type="button" class="quantity-btn quantity-btn--plus" data-product="salado-${producto.id}">+</button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Productos Dulces -->
+            <div class="form-section">
+              <h4 class="form-section__title">Tamales Gourmet Dulces</h4>
+              <div class="products-selector">
+                ${productos.dulces.map(producto => `
+                  <div class="product-selector-item">
+                    <div class="product-selector-item__info">
+                      <h5 class="product-selector-item__name">${producto.nombre}</h5>
+                      <p class="product-selector-item__desc">${producto.ingredientes}</p>
+                    </div>
+                    <div class="product-selector-item__controls">
+                      <button type="button" class="quantity-btn quantity-btn--minus" data-product="dulce-${producto.id}">−</button>
+                      <input type="number" 
+                             id="dulce-${producto.id}" 
+                             name="dulce-${producto.id}" 
+                             class="quantity-input" 
+                             min="0" 
+                             value="0" 
+                             data-product-name="${producto.nombre}"
+                             data-product-type="Dulce">
+                      <button type="button" class="quantity-btn quantity-btn--plus" data-product="dulce-${producto.id}">+</button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Especialidades -->
+            <div class="form-section">
+              <h4 class="form-section__title">Especialidades</h4>
+              <p class="form-section__note">Pedido mínimo 6 piezas para especialidades</p>
+              <div class="products-selector">
+                ${productos.especialidades.map(especialidad => `
+                  <div class="product-selector-item product-selector-item--special">
+                    <div class="product-selector-item__info">
+                      <h5 class="product-selector-item__name">${especialidad.nombre}</h5>
+                      <p class="product-selector-item__desc">${especialidad.descripcion}</p>
+                      <span class="product-selector-item__badge">Especialidad</span>
+                    </div>
+                    <div class="product-selector-item__controls">
+                      <button type="button" class="quantity-btn quantity-btn--minus" data-product="${especialidad.id}">−</button>
+                      <input type="number" 
+                             id="${especialidad.id}" 
+                             name="${especialidad.id}" 
+                             class="quantity-input" 
+                             min="0" 
+                             value="0" 
+                             data-product-name="${especialidad.nombre}"
+                             data-product-type="Especialidad"
+                             data-min-order="6">
+                      <button type="button" class="quantity-btn quantity-btn--plus" data-product="${especialidad.id}">+</button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Temporada -->
+            <div class="form-section">
+              <h4 class="form-section__title">Productos de Temporada</h4>
+              <div class="products-selector">
+                ${productos.temporada.map(item => `
+                  <div class="product-selector-item product-selector-item--seasonal">
+                    <div class="product-selector-item__info">
+                      <h5 class="product-selector-item__name">${item.nombre}</h5>
+                      <p class="product-selector-item__desc">${item.descripcion}</p>
+                      <span class="product-selector-item__badge product-selector-item__badge--seasonal">${item.temporada}</span>
+                    </div>
+                    <div class="product-selector-item__controls">
+                      <button type="button" class="quantity-btn quantity-btn--minus" data-product="${item.id}">−</button>
+                      <input type="number" 
+                             id="${item.id}" 
+                             name="${item.id}" 
+                             class="quantity-input" 
+                             min="0" 
+                             value="0" 
+                             data-product-name="${item.nombre}"
+                             data-product-type="Temporada">
+                      <button type="button" class="quantity-btn quantity-btn--plus" data-product="${item.id}">+</button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Opción Ligeros -->
+            <div class="form-section">
+              <div class="form-checkbox-group">
+                <label class="form-checkbox">
+                  <input type="checkbox" id="version-ligera" name="version-ligera" class="form-checkbox-input">
+                  <span class="form-checkbox-label">Versión Ligeros y Saludables (todos los productos)</span>
+                  <span class="form-checkbox-note">Elaborados con harina de avena, almendra o amaranto. Pedido mínimo 6 piezas.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Resumen del Pedido -->
+            <div class="form-section">
+              <div class="order-summary" id="orderSummary">
+                <h4 class="order-summary__title">Resumen del Pedido</h4>
+                <div class="order-summary__content" id="orderSummaryContent">
+                  <p class="order-summary__empty">Selecciona productos para ver el resumen</p>
+                </div>
+                <div class="order-summary__total" id="orderSummaryTotal" style="display: none;">
+                  <span class="order-summary__total-label">Total de Piezas:</span>
+                  <span class="order-summary__total-value" id="totalPieces">0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="form-actions">
+              <button type="submit" class="btn btn--submit" id="submitBtn">
+                Enviar Pedido
+              </button>
+              <button type="reset" class="btn btn--reset">
+                Limpiar Formulario
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
