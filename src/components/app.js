@@ -188,7 +188,11 @@ export function renderApp() {
 
     <!-- Hero -->
     <section id="inicio" class="hero">
-      <div class="container">
+      <video class="hero__video" autoplay loop muted playsinline>
+        <source src="/assets/videos/cali-hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero__overlay"></div>
+      <div class="container hero__content">
         <h1 class="hero__title">CALLITAE</h1>
         <h2 class="hero__title" style="font-size: clamp(1.5rem, 3vw, 2.5rem); margin-top: 1rem;">Tamal Artesanal y Especializado</h2>
         <p class="hero__subtitle">
