@@ -1,5 +1,14 @@
 // Componente principal de la aplicación
 
+// Íconos SVG modernos
+const Icons = {
+  tamal: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M6 6h12a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4z"/></svg>`,
+  email: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+  phone: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
+  location: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>`,
+  info: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`
+};
+
 // Datos de productos completos
 const productos = {
   salados: [
@@ -288,35 +297,51 @@ export function renderApp() {
     <!-- Productos -->
     <section id="productos" class="section section--accent">
       <div class="container">
-        <div class="section-title">
-          <h2>Nuestros Productos</h2>
+        <div class="products-header">
+          <div class="products-header__icon">
+            ${Icons.tamal}
+          </div>
+          <h2 class="products-header__title">Nuestros Productos</h2>
+          <p class="products-header__subtitle">Descubre nuestra amplia variedad de tamales artesanales</p>
         </div>
 
         <!-- Ligeros y Saludables -->
-        <div class="info-box" style="margin: 3rem 0; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%);">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <h3 style="color: #4CAF50; margin: 0;">${productos.ligeros.nombre}</h3>
-            <span class="category-badge category-badge--saludable">Saludable</span>
+        <div class="product-category product-category--healthy">
+          <div class="product-category__header">
+            <div class="product-category__icon-wrapper">
+              ${Icons.tamal}
+            </div>
+            <div class="product-category__title-wrapper">
+              <h3 class="product-category__title">${productos.ligeros.nombre}</h3>
+              <span class="category-badge category-badge--saludable">Saludable</span>
+            </div>
           </div>
-          <p style="font-size: 1rem; line-height: 1.8; margin-bottom: 0.5rem;">
-            ${productos.ligeros.descripcion}
-          </p>
-          <p style="font-size: 0.9rem; font-weight: 600; color: #FF9A00;">
-            📌 ${productos.ligeros.nota} • Todos los sabores disponibles en versión ligera
-          </p>
+          <div class="product-category__content">
+            <p class="product-category__description">
+              ${productos.ligeros.descripcion}
+            </p>
+            <div class="product-category__note">
+              <span class="icon-info">${Icons.info}</span>
+              <span><strong>${productos.ligeros.nota}</strong> • Todos los sabores disponibles en versión ligera</span>
+            </div>
+          </div>
         </div>
 
         <!-- Tamales Gourmet Salados -->
-        <div style="margin: 4rem 0;">
-          <div class="section-title">
-            <h2>Tamales Gourmet Salados</h2>
+        <div class="product-section">
+          <div class="product-section__header">
+            <h2 class="product-section__title">Tamales Gourmet Salados</h2>
+            <p class="product-section__subtitle">Sabores tradicionales con un toque especial</p>
           </div>
           <div class="products">
             ${productos.salados.map(producto => `
               <div class="product-card">
+                <div class="product-card__icon">
+                  ${Icons.tamal}
+                </div>
                 <div class="product-card__content">
-                  <h3>${producto.nombre}</h3>
-                  <p>${producto.ingredientes}</p>
+                  <h3 class="product-card__name">${producto.nombre}</h3>
+                  <p class="product-card__ingredients">${producto.ingredientes}</p>
                 </div>
               </div>
             `).join('')}
@@ -324,16 +349,20 @@ export function renderApp() {
         </div>
 
         <!-- Tamales Gourmet Dulces -->
-        <div style="margin: 4rem 0;">
-          <div class="section-title">
-            <h2>Tamales Gourmet Dulces</h2>
+        <div class="product-section">
+          <div class="product-section__header">
+            <h2 class="product-section__title">Tamales Gourmet Dulces</h2>
+            <p class="product-section__subtitle">Dulces tradicionales para endulzar tu día</p>
           </div>
           <div class="products">
             ${productos.dulces.map(producto => `
               <div class="product-card">
+                <div class="product-card__icon">
+                  ${Icons.tamal}
+                </div>
                 <div class="product-card__content">
-                  <h3>${producto.nombre}</h3>
-                  <p>${producto.ingredientes}</p>
+                  <h3 class="product-card__name">${producto.nombre}</h3>
+                  <p class="product-card__ingredients">${producto.ingredientes}</p>
                 </div>
               </div>
             `).join('')}
@@ -341,22 +370,27 @@ export function renderApp() {
         </div>
 
         <!-- Especialidades -->
-        <div style="margin: 4rem 0;">
-          <div class="section-title">
-            <h2>Especialidades</h2>
+        <div class="product-section">
+          <div class="product-section__header">
+            <h2 class="product-section__title">Especialidades</h2>
+            <p class="product-section__subtitle">Creaciones únicas que sorprenden</p>
           </div>
-          <p style="text-align: center; margin-bottom: 2rem; color: #666; font-size: 1rem;">
-            📌 Pedido mínimo 6 piezas para especialidades
-          </p>
+          <div class="product-category__note product-category__note--center">
+            <span class="icon-info">${Icons.info}</span>
+            <span><strong>Pedido mínimo 6 piezas</strong> para especialidades</span>
+          </div>
           <div class="products">
             ${productos.especialidades.map(especialidad => `
-              <div class="product-card">
+              <div class="product-card product-card--featured">
+                <div class="product-card__icon">
+                  ${Icons.tamal}
+                </div>
                 <div class="product-card__content">
-                  <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <h3>${especialidad.nombre}</h3>
+                  <div class="product-card__header">
+                    <h3 class="product-card__name">${especialidad.nombre}</h3>
                     <span class="category-badge category-badge--especialidad">Especialidad</span>
                   </div>
-                  <p>${especialidad.descripcion}</p>
+                  <p class="product-card__ingredients">${especialidad.descripcion}</p>
                 </div>
               </div>
             `).join('')}
@@ -364,19 +398,23 @@ export function renderApp() {
         </div>
 
         <!-- Temporada -->
-        <div style="margin: 4rem 0;">
-          <div class="section-title">
-            <h2>Productos de Temporada</h2>
+        <div class="product-section">
+          <div class="product-section__header">
+            <h2 class="product-section__title">Productos de Temporada</h2>
+            <p class="product-section__subtitle">Sabores exclusivos para momentos especiales</p>
           </div>
           <div class="products">
             ${productos.temporada.map(item => `
-              <div class="product-card">
+              <div class="product-card product-card--seasonal">
+                <div class="product-card__icon">
+                  ${Icons.tamal}
+                </div>
                 <div class="product-card__content">
-                  <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <h3>${item.nombre}</h3>
+                  <div class="product-card__header">
+                    <h3 class="product-card__name">${item.nombre}</h3>
                     <span class="category-badge category-badge--temporada">${item.temporada}</span>
                   </div>
-                  <p>${item.descripcion}</p>
+                  <p class="product-card__ingredients">${item.descripcion}</p>
                 </div>
               </div>
             `).join('')}
@@ -411,29 +449,41 @@ export function renderApp() {
         <div class="section-title">
           <h2>Contáctanos</h2>
         </div>
-        <div style="max-width: 700px; margin: 0 auto;">
-          <div class="info-box" style="text-align: center;">
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">
-              Para realizar tu pedido o solicitar información sobre nuestros tamales artesanales, 
-              contáctanos a través de los siguientes medios:
-            </p>
-            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
-              <div style="padding: 1.5rem; background: rgba(255, 154, 0, 0.05); border-radius: 12px;">
-                <strong style="font-size: 1.1rem; color: #FF9A00;">📧 Email:</strong>
-                <p style="margin-top: 0.5rem; font-size: 1rem;">contacto@callitae.com</p>
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div class="contact-intro">
+            <p>Para realizar tu pedido o solicitar información sobre nuestros tamales artesanales, contáctanos a través de los siguientes medios:</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                ${Icons.email}
               </div>
-              <div style="padding: 1.5rem; background: rgba(255, 154, 0, 0.05); border-radius: 12px;">
-                <strong style="font-size: 1.1rem; color: #FF9A00;">📱 Teléfono:</strong>
-                <p style="margin-top: 0.5rem; font-size: 1rem;">(Próximamente)</p>
-              </div>
-              <div style="padding: 1.5rem; background: rgba(255, 154, 0, 0.05); border-radius: 12px;">
-                <strong style="font-size: 1.1rem; color: #FF9A00;">📍 Ubicación:</strong>
-                <p style="margin-top: 0.5rem; font-size: 1rem;">(Próximamente)</p>
+              <div class="contact-item__content">
+                <h3 class="contact-item__title">Email</h3>
+                <a href="mailto:contacto@callitae.com" class="contact-item__link">contacto@callitae.com</a>
               </div>
             </div>
-            <div style="margin-top: 2rem;">
-              <a href="mailto:contacto@callitae.com" class="btn">Enviar un Mensaje</a>
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                ${Icons.phone}
+              </div>
+              <div class="contact-item__content">
+                <h3 class="contact-item__title">Teléfono</h3>
+                <p class="contact-item__text">Próximamente</p>
+              </div>
             </div>
+            <div class="contact-item">
+              <div class="contact-item__icon">
+                ${Icons.location}
+              </div>
+              <div class="contact-item__content">
+                <h3 class="contact-item__title">Ubicación</h3>
+                <p class="contact-item__text">Próximamente</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-cta">
+            <a href="mailto:contacto@callitae.com" class="btn">Enviar un Mensaje</a>
           </div>
         </div>
       </div>
