@@ -5,6 +5,33 @@ Todos los cambios notables del proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [0.3.0] - 2024-12-XX
+
+### Añadido
+- Rediseño completo con colores mexicanos (naranja brillante #FF9A00, amarillo radiante #FFD15C)
+- Sección de Propósito y Oferta de Valor destacada
+- Categoría "Ligeros y Saludables" con información detallada
+- Sección de Especialidades (Gansitamales, Gelatamales, Envinados, Birria)
+- Productos de Temporada (Tamales en Nogada, Ponche)
+- Badges de categoría para productos (Saludable, Especialidad, Temporada)
+- Mejoras visuales con gradientes, sombras y efectos hover mejorados
+- Información completa del negocio reorganizada y mejorada
+- Sección "Hecho en México" mejorada con descripción
+
+### Modificado
+- Estilos completamente rediseñados con paleta mexicana
+- Estructura de información reorganizada para mejor flujo
+- Hero section mejorado con múltiples CTAs
+- Tarjetas de productos con mejor diseño y efectos
+- Footer mejorado con mejor jerarquía visual
+- Secciones con mejor espaciado y organización
+
+### Mejorado
+- Experiencia visual más atractiva y profesional
+- Mejor organización de la información del negocio
+- Diseño más coherente con cultura mexicana
+- Mejor uso de colores y contrastes
+
 ## [0.2.0] - 2024-10-28
 
 ### Añadido (B1 - Página Web Principal)

@@ -1,10 +1,12 @@
-// Variables
-$primary-color: #8B4513; // Brown para tradición
-$secondary-color: #228B22; // Verde para fresco
-$accent-color: #DC143C; // Rojo mexicano
-$light-bg: #FFFEF9; // Beige claro
+// Variables - Colores Mexicanos
+$primary-orange: #FF9A00; // Naranja brillante
+$bright-orange: #F39C12; // Naranja alternativo
+$radiant-yellow: #FFD15C; // Amarillo radiante
+$light-yellow: #FCE07A; // Amarillo claro
+$white-bg: #FFFFFF; // Fondo blanco
 $dark-text: #2C2C2C;
-$light-text: #666;
+$light-text: #666666;
+$accent-dark: #8B4513; // Marrón para contrastes sutiles
 
 // Reset y estilos base
 * {
@@ -25,7 +27,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $dark-text;
-  background-color: $light-bg;
+  background-color: $white-bg;
   line-height: 1.6;
 }
 
@@ -36,48 +38,77 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
-h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
+h1 { 
+  font-size: clamp(2rem, 5vw, 3.5rem); 
+  color: $dark-text;
+}
+
+h2 { 
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: $dark-text;
+}
+
+h3 { 
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  color: $dark-text;
+}
+
+h4 {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+}
 
 // Links
 a {
-  color: $primary-color;
+  color: $primary-orange;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
-    color: $accent-color;
+    color: $bright-orange;
+    text-decoration: underline;
   }
 }
 
 // Botones
 .btn {
   display: inline-block;
-  padding: 1rem 2rem;
-  background-color: $primary-color;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, $primary-orange 0%, $bright-orange 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
 
   &:hover {
-    background-color: $accent-color;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, $bright-orange 0%, $primary-orange 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+    text-decoration: none;
   }
 
   &--secondary {
-    background-color: transparent;
-    border: 2px solid $primary-color;
-    color: $primary-color;
+    background: linear-gradient(135deg, $radiant-yellow 0%, $light-yellow 100%);
+    color: $dark-text;
+    box-shadow: 0 4px 15px rgba(255, 209, 92, 0.3);
 
     &:hover {
-      background-color: $primary-color;
+      background: linear-gradient(135deg, $light-yellow 0%, $radiant-yellow 100%);
+      box-shadow: 0 6px 20px rgba(255, 209, 92, 0.4);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid $primary-orange;
+    color: $primary-orange;
+
+    &:hover {
+      background: $primary-orange;
       color: white;
     }
   }
@@ -102,15 +133,20 @@ a {
   @media (min-width: 768px) {
     padding: 6rem 0;
   }
+
+  &--accent {
+    background: linear-gradient(135deg, rgba(255, 209, 92, 0.1) 0%, rgba(255, 154, 0, 0.1) 100%);
+  }
 }
 
 // Header/Nav
 .header {
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: $white-bg;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 3px solid $radiant-yellow;
 }
 
 .nav {
@@ -120,22 +156,48 @@ a {
   padding: 1.5rem 0;
 
   &__logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: $primary-color;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, $primary-orange 0%, $bright-orange 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.05em;
   }
 
   &__menu {
     display: none;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
 
     @media (min-width: 768px) {
       display: flex;
     }
 
     a {
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      padding: 0.5rem 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $primary-orange;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
@@ -145,7 +207,12 @@ a {
     cursor: pointer;
     background: none;
     border: none;
-    color: $primary-color;
+    color: $primary-orange;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     @media (min-width: 768px) {
       display: none;
@@ -155,24 +222,45 @@ a {
 
 // Hero
 .hero {
-  background: linear-gradient(135deg, $primary-color 0%, $accent-color 100%);
+  background: linear-gradient(135deg, $radiant-yellow 0%, $primary-orange 100%);
   color: white;
   padding: 6rem 0;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.3;
+  }
 
   @media (min-width: 768px) {
-    padding: 8rem 0;
+    padding: 10rem 0;
   }
 
   &__title {
     margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
   }
 
   &__subtitle {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    margin-bottom: 2rem;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    margin-bottom: 2.5rem;
     opacity: 0.95;
+    position: relative;
+    z-index: 1;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -193,44 +281,194 @@ a {
 }
 
 .product-card {
-  background: white;
-  border-radius: 12px;
+  background: $white-bg;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-orange 0%, $radiant-yellow 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(255, 154, 0, 0.2);
+    border-color: $radiant-yellow;
+
+    &::before {
+      opacity: 1;
+    }
   }
 
   &__image {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    background-color: $light-bg;
+    background: linear-gradient(135deg, $radiant-yellow 0%, $primary-orange 100%);
   }
 
   &__content {
     padding: 1.5rem;
 
     h3 {
-      color: $primary-color;
-      margin-bottom: 0.5rem;
+      color: $primary-orange;
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
     }
 
     p {
       color: $light-text;
       font-size: 0.95rem;
+      line-height: 1.6;
     }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: $radiant-yellow;
+    color: $dark-text;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+}
+
+// Categoría Badge
+.category-badge {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+
+  &--saludable {
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+    color: white;
+  }
+
+  &--especialidad {
+    background: linear-gradient(135deg, $primary-orange 0%, $bright-orange 100%);
+    color: white;
+  }
+
+  &--temporada {
+    background: linear-gradient(135deg, #9C27B0 0%, #E91E63 100%);
+    color: white;
+  }
+}
+
+// Info Box
+.info-box {
+  background: $white-bg;
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-left: 5px solid $primary-orange;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    color: $primary-orange;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $light-text;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Value Proposition Section
+.value-prop {
+  background: linear-gradient(135deg, rgba(255, 209, 92, 0.15) 0%, rgba(255, 154, 0, 0.15) 100%);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  margin: 3rem 0;
+  text-align: center;
+
+  h2 {
+    color: $primary-orange;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: $dark-text;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+// Section Title with Decoration
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+
+  h2 {
+    display: inline-block;
+    padding: 0 2rem;
+    background: $white-bg;
+    position: relative;
+    z-index: 2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, $primary-orange);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -100%;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, $primary-orange, transparent);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $radiant-yellow, $primary-orange, $radiant-yellow);
+    z-index: 1;
   }
 }
 
 // Footer
 .footer {
-  background-color: $dark-text;
+  background: linear-gradient(135deg, $dark-text 0%, #1a1a1a 100%);
   color: white;
-  padding: 3rem 0 2rem;
+  padding: 4rem 0 2rem;
   text-align: center;
 
   &__content {
@@ -245,31 +483,64 @@ a {
     }
   }
 
-  &__section h4 {
-    margin-bottom: 1rem;
-    color: $secondary-color;
+  &__section {
+    h4 {
+      margin-bottom: 1rem;
+      color: $radiant-yellow;
+      font-size: 1.2rem;
+    }
+
+    p {
+      opacity: 0.9;
+      line-height: 1.8;
+    }
   }
 
   &__links {
     list-style: none;
-  }
 
-  &__links li {
-    margin-bottom: 0.5rem;
-  }
+    li {
+      margin-bottom: 0.75rem;
+    }
 
-  &__links a {
-    color: rgba(255, 255, 255, 0.8);
-    
-    &:hover {
-      color: white;
+    a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $radiant-yellow;
+        padding-left: 0.5rem;
+        text-decoration: none;
+      }
     }
   }
 
   &__copyright {
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
     opacity: 0.8;
+  }
+}
+
+// Hecho en México Badge
+.hecho-mexico {
+  text-align: center;
+  padding: 2rem;
+  background: $white-bg;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin: 2rem 0;
+
+  img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $light-text;
+    font-size: 0.9rem;
+    font-style: italic;
   }
 }
 
@@ -281,8 +552,24 @@ a {
 .mt-1 { margin-top: 1rem; }
 .mt-2 { margin-top: 2rem; }
 .mt-3 { margin-top: 3rem; }
+.mt-4 { margin-top: 4rem; }
 
 .mb-1 { margin-bottom: 1rem; }
 .mb-2 { margin-bottom: 2rem; }
 .mb-3 { margin-bottom: 3rem; }
+.mb-4 { margin-bottom: 4rem; }
 
+// Responsive adjustments
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 0;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .product-card {
+    margin-bottom: 1rem;
+  }
+}

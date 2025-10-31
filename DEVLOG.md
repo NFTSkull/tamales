@@ -101,3 +101,61 @@ Este archivo registra las decisiones técnicas, cambios y razonamientos durante 
 - Agregar funcionalidad de menú móvil
 - Testing del sitio
 
+---
+
+## Diciembre 2024
+
+### Rediseño Visual y Mejora de Contenido
+
+**Contexto**: Mejora extremada del aspecto visual y reorganización de información basada en especificaciones del cliente.
+
+**Decisiones**:
+1. **Paleta de colores mexicana**: 
+   - Naranja brillante (#FF9A00, #F39C12) como color principal
+   - Amarillo radiante (#FFD15C, #FCE07A) como color secundario
+   - Fondo blanco (#FFFFFF) para contraste
+   - Cambio completo de los colores anteriores (marrón, verde) a colores más vibrantes y asociados con comida mexicana
+
+2. **Estructura de información mejorada**:
+   - Sección destacada de Propósito y Oferta de Valor
+   - Información del negocio reorganizada y más completa
+   - Separación clara de categorías de productos
+   - Badges visuales para identificar categorías (Saludable, Especialidad, Temporada)
+
+3. **Categorías especiales añadidas**:
+   - Ligeros y Saludables: con descripción detallada de ingredientes alternativos
+   - Especialidades: Gansitamales, Gelatamales, Envinados, Birria
+   - Temporada: Tamales en Nogada (septiembre), Ponche (diciembre)
+
+4. **Mejoras visuales**:
+   - Gradientes en botones y secciones
+   - Efectos hover mejorados en tarjetas de productos
+   - Bordes decorativos con colores naranja/amarillo
+   - Mejor jerarquía visual con secciones decoradas
+   - Sombras sutiles para profundidad
+
+**Implementado**:
+- ✅ Rediseño completo de estilos SCSS con nueva paleta
+- ✅ Información completa del negocio integrada
+- ✅ Todas las categorías de productos añadidas
+- ✅ Badges y categorías visuales implementadas
+- ✅ Mejor organización de secciones
+- ✅ Efectos visuales mejorados (gradientes, sombras, hover)
+
+**Cambios técnicos**:
+- Variables SCSS actualizadas con nuevos colores
+- Nuevas clases CSS para badges de categoría
+- Secciones con clases de acento para fondos degradados
+- Mejor estructura semántica en HTML generado
+
+**Bloque de mejoras completado**: ✅
+- Rediseño visual completo
+- Contenido actualizado y reorganizado
+- Todas las categorías de productos implementadas
+
+**Próximos pasos**:
+- Integrar imágenes de tamales cuando estén disponibles
+- Añadir funcionalidad de menú móvil
+- Implementar formulario de contacto funcional
+- Optimización de rendimiento y SEO
+
