@@ -5,6 +5,18 @@ Todos los cambios notables del proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [0.4.0] - 2024-12-XX
+
+### Añadido
+- Tipografía elegante con Google Fonts (Playfair Display para títulos, Inter para cuerpo)
+- Animaciones sofisticadas y transiciones suaves en todos los elementos
+- Efectos glassmorphism en info boxes y elementos decorativos
+- Animaciones de fondo en hero section (patrones y shimmer)
+- Efectos hover avanzados con transformaciones 3D en tarjetas
+- Elementos decorativos únicos (símbolos ✦ en títulos de sección)
+- Gradientes sutiles y efectos de profundidad mejorados
+- Sistema de diseño mejorado con mejor jerarquía visual
+
 ## [0.3.0] - 2024-12-XX
 
 ### Añadido
