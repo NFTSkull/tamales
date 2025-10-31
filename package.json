@@ -1,0 +1,34 @@
+{
+  "name": "callitae-website",
+  "version": "0.1.0",
+  "description": "Sitio web de CALLITAE - Tamal Artesanal y Especializado",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vano build && npm run lint && npm run typecheck",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"Tests pendientes\" && exit 0"
+  },
+  "keywords": [
+    "tamales",
+    "artesanal",
+    "gourmet",
+    "mexicano"
+  ],
+  "author": "CALLITAE",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "sass": "^1.69.5",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {}
+}
+
+
+
+
