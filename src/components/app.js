@@ -223,6 +223,9 @@ export function renderApp() {
 
     <main>
       <section id="inicio" class="hero">
+        <video class="hero__video" autoplay loop muted playsinline>
+          <source src="/assets/videos/cali-hero.mp4" type="video/mp4">
+        </video>
         <div class="hero__overlay"></div>
         <div class="container hero__content">
           <div class="hero__badge">Solo envíos a domicilio</div>
