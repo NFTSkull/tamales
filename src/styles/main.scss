@@ -843,20 +843,25 @@ img {
 }
 
 .product-selector-item {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem;
+  flex-direction: column;
+  padding: 1rem;
   background: rgba(255, 154, 0, 0.05);
   border: 2px solid rgba(255, 154, 0, 0.15);
   border-radius: 16px;
   transition: all 0.3s ease;
   gap: 1.5rem;
+  box-sizing: border-box;
 
   &:hover {
     background: rgba(255, 154, 0, 0.08);
     border-color: rgba(255, 154, 0, 0.3);
     transform: translateX(5px);
+  }
+
+  @media (min-width: 1024px) {
+    overflow: hidden;
   }
 
   &--special {
@@ -870,7 +875,7 @@ img {
   }
 
   &__info {
-    flex: 1;
+    flex: 1 1 auto;
   }
 
   &__desc {
@@ -913,8 +918,10 @@ img {
       position: static !important;
       inset: auto !important;
       transform: none !important;
+      max-width: none;
+      width: 100%;
       margin: 0.75rem 0 0 0;
-      max-width: 100%;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
     }
   }
 }
