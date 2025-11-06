@@ -88,18 +88,15 @@ const productTypeLabels = {
 const pedidosDestacados = [
   {
     titulo: 'Eventos y celebraciones',
-    descripcion: 'Banquetes, bodas, bautizos, cumpleaños y reuniones familiares con entrega puntual.',
-    icono: '🎉'
+    descripcion: 'Banquetes, bodas, bautizos, cumpleaños y reuniones familiares con entrega puntual.'
   },
   {
     titulo: 'Empresas y desayunos',
-    descripcion: 'Desayunos ejecutivos, lanzamientos y regalos corporativos con menú personalizado.',
-    icono: '🏢'
+    descripcion: 'Desayunos ejecutivos, lanzamientos y regalos corporativos con menú personalizado.'
   },
   {
     titulo: 'Envíos a domicilio',
-    descripcion: 'Entrega directa a tu puerta dentro del área de cobertura. Programa tu fecha y horario.',
-    icono: '🚚'
+    descripcion: 'Entrega directa a tu puerta dentro del área de cobertura. Programa tu fecha y horario.'
   }
 ];
 
@@ -272,12 +269,14 @@ export function renderApp() {
             <h2 class="order-highlights__title">Pedidos para cada ocasión</h2>
             <p class="order-highlights__subtitle">Agenda tus tamales para eventos, empresas o desayuno en casa. Siempre con entrega a domicilio.</p>
             <div class="order-highlights__grid">
-              ${pedidosDestacados.map(destacado => `
+              ${pedidosDestacados.map((destacado, index) => `
                 <article class="order-highlights__card" data-scroll="#orderFormSection">
-                  <span class="order-highlights__icon" aria-hidden="true">${destacado.icono}</span>
-                  <h3 class="order-highlights__card-title">${destacado.titulo}</h3>
-                  <p class="order-highlights__card-text">${destacado.descripcion}</p>
-                  <span class="order-highlights__cta">Solicitar pedido →</span>
+                  <span class="order-highlights__mark" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+                  <div class="order-highlights__content">
+                    <h3 class="order-highlights__card-title">${destacado.titulo}</h3>
+                    <p class="order-highlights__card-text">${destacado.descripcion}</p>
+                    <span class="order-highlights__cta">Solicitar pedido</span>
+                  </div>
                 </article>
               `).join('')}
             </div>
