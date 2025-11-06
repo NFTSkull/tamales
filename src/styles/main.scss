@@ -145,12 +145,13 @@ img {
   }
 
   &--hero-secondary {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: #111111;
+    border: 2px solid #111111;
     color: $white;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.35);
+      background: #000000;
+      border-color: #000000;
     }
   }
 

@@ -43,6 +43,20 @@ function initializeSmoothScroll() {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  document.querySelectorAll('a[href^="/#"], a[href^="#"], a[href^="/index.html#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      let selector = href;
+      if (href.startsWith('/#')) selector = href.replace('/#', '#');
+      if (href.startsWith('/index.html#')) selector = href.replace('/index.html', '');
+      const target = document.querySelector(selector);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 }
 
 function initializeProductFilters() {
