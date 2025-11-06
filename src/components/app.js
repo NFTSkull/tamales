@@ -233,6 +233,7 @@ export function renderApp() {
         </a>
         <ul class="nav__menu">
           <li><a href="#inicio" data-scroll="#inicio">Inicio</a></li>
+          <li><a href="/nosotros.html">Nosotros</a></li>
           <li><a href="#productos" data-scroll="#productos">Productos</a></li>
           <li><a href="#pedidos" data-scroll="#pedidos">Pedidos</a></li>
         </ul>
@@ -417,6 +418,7 @@ export function renderApp() {
             <ul class="footer__links">
               <li><a href="#inicio" data-scroll="#inicio">Inicio</a></li>
               <li><a href="#productos" data-scroll="#productos">Catálogo</a></li>
+              <li><a href="/nosotros.html">Nosotros</a></li>
               <li><a href="#pedidos" data-scroll="#pedidos">Pedidos</a></li>
             </ul>
           </div>
