@@ -244,7 +244,8 @@ export function renderApp() {
 
     <main>
       <section id="inicio" class="hero">
-        <video class="hero__video" autoplay loop muted playsinline>
+        <video class="hero__video" autoplay loop muted playsinline preload="auto" poster="/assets/videos/cali-hero-poster.jpg">
+          <source src="/assets/videos/cali-hero.webm" type="video/webm">
           <source src="/assets/videos/cali-hero.mp4" type="video/mp4">
         </video>
         <div class="hero__overlay"></div>
