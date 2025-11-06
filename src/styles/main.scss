@@ -540,6 +540,23 @@ img {
   }
 }
 
+@media (min-width: 1024px) {
+  .product-card {
+    &__badges {
+      justify-content: flex-end;
+      gap: 0.6rem;
+    }
+
+    &__badge {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 1.1rem;
+      box-shadow: 0 10px 22px rgba(255, 154, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
 .products-grid__note {
   margin-top: 2.5rem;
   text-align: center;
