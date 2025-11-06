@@ -61,7 +61,3 @@ Consulta la documentación completa en `/docs`:
 ## 📝 Licencia
 
 MIT
-
-
-
-

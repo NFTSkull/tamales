@@ -5,6 +5,23 @@ Todos los cambios notables del proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [0.5.0] - 2024-12-XX
+
+### Añadido (B3 - Landing Comercial Interactiva)
+- Hero enfocado a ventas con mensajes para eventos, empresas y envíos a domicilio
+- Filtros interactivos de catálogo (Todos, Salados, Dulces, Especialidades, Temporada, Línea ligera)
+- Tarjetas de producto con badges dinámicos y CTA “Agregar al pedido”
+- Sección “Pedidos para cada ocasión” con cards y llamadas a la acción
+- Formulario de pedido actualizado con resumen dinámico y validaciones
+- Scroll suave en CTAs y tarjetas de producto
+- Menú responsive con toggle y estilo acorde a la identidad
+
+### Modificado
+- Rediseño completo del layout para destacar el catálogo y los pedidos a domicilio
+- Estilos SCSS simplificados para el nuevo flujo comercial
+- Navegación reducida a secciones clave (Inicio, Productos, Pedidos)
+- Footer con información de contacto y mensaje de envíos a domicilio
+
 ## [0.4.0] - 2024-12-XX
 
 ### Añadido

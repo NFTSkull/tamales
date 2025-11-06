@@ -103,6 +103,41 @@ Este archivo registra las decisiones técnicas, cambios y razonamientos durante 
 
 ---
 
+## 06-11-2025 - Bloque B3 (Landing Comercial)
+
+### Objetivo
+Rediseñar la homepage para que se enfoque 100% en la venta de tamales y pedidos a domicilio, con filtros y CTA directos para eventos y empresas.
+
+### Cambios clave
+- Reescritura completa de `src/components/app.js` con:
+  - Hero comercial (solo envíos a domicilio, CTAs hacia catálogo y pedidos)
+  - Catálogo unificado (salados, dulces, especialidades y temporada) + badges dinámicos
+  - Botonera de filtros (`todos`, `salado`, `dulce`, `especialidad`, `temporada`, `ligero`)
+  - Sección “Pedidos para cada ocasión” (eventos, empresas, domicilio)
+  - Formulario de pedido con resumen dinámico y envío vía mailto
+- `src/main.js` ahora controla:
+  - Filtros de catálogo sin recargar la página
+  - Scroll suave para todos los CTA (hero, cards, menú)
+  - Menú móvil con toggle
+  - Validaciones y reset del formulario
+- `src/styles/main.scss` reescrito para reflejar la nueva identidad comercial y responsive simplificado
+- Documentación actualizada (`PRODUCTO.md`, `ARQUITECTURA.md`, `API_CONTRATOS.md`, `TEST_PLAN.md`)
+- CHANGELOG incrementado a 0.5.0
+
+### Supuestos
+- Línea ligera disponible para salados, dulces y especialidades (pedido mínimo 6 pzas)
+- Especialidades se mantienen con mínimo 6 pzas; temporada sin versión ligera
+- Contacto principal vía mailto `contacto@callitae.com`
+- Cobertura de envíos a definir manualmente (pendiente del cliente)
+
+### Pendientes
+- Integrar logos definitivos y favicon optimizado cuando el cliente los comparta
+- Ajustar copy según cobertura de envíos confirmada
+- Añadir menú móvil con animación de overlay (actual toggle básico)
+- Ejecutar pruebas de usabilidad y Lighthouse (Bloque B4)
+
+---
+
 ## Diciembre 2024
 
 ### Rediseño Visual y Mejora de Contenido

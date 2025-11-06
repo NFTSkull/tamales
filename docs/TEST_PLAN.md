@@ -16,12 +16,12 @@
 ## BLOQUE B1: Página Web Principal
 
 ### 1. Pruebas Visuales (Visual Regression)
-- [ ] Hero section se muestra correctamente en todos los dispositivos
+- [ ] Hero comercial muestra mensaje de venta y CTA principales
 - [ ] Logo carga y se muestra nítidamente
 - [ ] Colores y tipografía siguen el diseño especificado
 - [ ] Spacing y layout son consistentes
-- [ ] Imágenes de productos se cargan correctamente
-- [ ] Distintivo "Hecho en México" se muestra correctamente
+- [ ] Tarjetas de producto se renderizan correctamente
+- [ ] Sección de pedidos (eventos/empresas/domicilio) es visible
 
 **Dispositivos de prueba**:
 - iPhone (Safari)
@@ -36,9 +36,8 @@
 
 ### 2. Pruebas Funcionales
 - [ ] Todos los links de navegación funcionan
-- [ ] Botones de CTA son clickeables
-- [ ] Si hay filtros de categorías, funcionan correctamente
-- [ ] Formulario de contacto (si existe) valida campos
+- [ ] Botones de CTA hacen scroll al formulario de pedidos
+- [ ] Formulario de pedidos valida campos requeridos
 - [ ] Envío de formulario muestra mensaje de confirmación o error
 - [ ] Links de redes sociales abren correctamente
 
@@ -63,7 +62,7 @@
 ### 5. Pruebas de Contenido
 - [ ] Todos los productos del catálogo están incluidos
 - [ ] Descripciones de productos son completas
-- [ ] Información de contacto es correcta
+- [ ] Mensaje “solo envíos a domicilio” presente
 - [ ] No hay errores ortográficos
 - [ ] Textos son claros y descriptivos
 
@@ -80,6 +79,33 @@
 - [ ] Imágenes no se deforman en ninguna resolución
 - [ ] Textos son legibles en pantallas pequeñas
 - [ ] Botones tienen tamaño adecuado para touch
+
+---
+
+## BLOQUE B3: Landing Comercial Interactiva
+
+### 1. Filtros de Catálogo
+- [ ] Botón "Todos" activo por defecto
+- [ ] Filtro "Salados" muestra solo productos salados
+- [ ] Filtro "Dulces" muestra solo productos dulces
+- [ ] Filtro "Especialidades" oculta el resto y mantiene badges
+- [ ] Filtro "Temporada" muestra los productos especiales del periodo
+- [ ] Filtro "Ligeros" muestra únicamente tarjetas con versión ligera disponible
+- [ ] Cambiar de filtro no provoca reflow incorrecto ni saltos de layout
+
+### 2. Interacciones de Venta
+- [ ] CTA “Agregar al pedido” desplaza al formulario correctamente
+- [ ] Cards de eventos/empresas/domicilio desplazan al formulario
+- [ ] Mensaje “solo envíos a domicilio” visible en desktop y mobile
+- [ ] Microinteracciones (hover, focus) no afectan legibilidad
+
+### 3. Formulario de Pedido
+- [ ] Botones +/- actualizan cantidades en tiempo real
+- [ ] Resumen refleja cantidades y categorías seleccionadas
+- [ ] Se impide el envío si no hay productos seleccionados
+- [ ] Validaciones de pedido mínimo para especialidades y línea ligera
+- [ ] Fecha mínima = día siguiente
+- [ ] Envío genera mailto con detalle del pedido
 
 ---
 
@@ -109,6 +135,8 @@ Antes de hacer deploy a producción, verificar:
 - [ ] Backup de código realizado
 - [ ] CHANGELOG.md actualizado
 - [ ] DEVLOG.md actualizado
+
+
 
 
 

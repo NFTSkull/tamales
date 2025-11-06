@@ -23,7 +23,3 @@
 - Formatos recomendados: WebP, PNG (con transparencia), JPG
 - Tamaño máximo recomendado: 200KB por imagen
 - Implementar lazy loading para imágenes de productos
-
-
-
-

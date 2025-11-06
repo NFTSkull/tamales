@@ -31,15 +31,10 @@
 
 ### Página Principal (index.html)
 1. **Hero Section**: Presentación de la marca con logo y tagline
-2. **Sobre Nosotros**: Valores y propósitos del negocio
-3. **Productos**: 
-   - Tamales Salados
-   - Tamales Dulces
-   - Categorías Especiales (Ligeros, Especialidades, Temporada)
-4. **Proceso Artesanal**: Diferencia y calidad
-5. **Hecho en México**: Distintivo oficial
-6. **Contacto/Pedidos**: Formulario o información de contacto
-7. **Footer**: Redes sociales, créditos
+2. **Catálogo interactivo**: Grid filtrable por categoría (Salados, Dulces, Especialidades, Temporada, Ligeros)
+3. **Pedidos para eventos/empresas**: Bloques informativos con CTA
+4. **Formulario de pedido**: Selección de productos, resumen dinámico, mailto
+5. **Footer**: Redes sociales, créditos
 
 ## 3. COMPONENTES
 
@@ -48,19 +43,28 @@
 - Menú de navegación (Home, Productos, Nosotros, Contacto)
 - Botón de pedidos destacado
 
-### 3.2 Product Card
+### 3.2 Product Filters
+- Conjunto de botones (`data-filter`)
+- Cambia visibilidad de tarjetas sin recargar la página
+- Botón "Todos" activo al cargar
+
+### 3.3 Product Card
 - Imagen del tamal
 - Nombre
 - Descripción de ingredientes
 - Badge de categoría (Saludable, Especialidad, Temporada)
 - Precio (pendiente)
 
-### 3.3 Category Section
-- Título de categoría
-- Grid de productos
-- Filtros por tipo (opcional)
+### 3.4 Order Highlights
+- Cards para eventos, empresas y envíos a domicilio
+- CTA que hace scroll al formulario
 
-### 3.4 Testimonials/Reviews
+### 3.5 Order Form
+- Datos de contacto
+- Selección de cantidades por producto
+- Resumen dinámico
+
+### 3.6 Testimonials/Reviews
 - Sección de testimonios (futuro)
 
 ## 4. SISTEMA DE DISEÑO
@@ -136,6 +140,8 @@
 ### Producción
 - Hosting estático: Netlify, Vercel, GitHub Pages
 - CDN para imágenes: Cloudinary (opcional)
+
+
 
 
 

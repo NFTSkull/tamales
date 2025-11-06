@@ -1,43 +1,114 @@
 // Importar estilos
 import './styles/main.scss';
-
-// Importar componente principal
 import './components/app.js';
 
-// Código JavaScript principal
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('CALLITAE website loaded');
-  
-  // Lazy loading de imágenes
-  if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-            observer.unobserve(img);
-          }
-        }
-      });
-    });
-
-    document.querySelectorAll('img[data-src]').forEach(img => {
-      imageObserver.observe(img);
-    });
-  }
-
-  // Manejo del formulario de pedido
+  initializeLazyLoading();
+  initializeSmoothScroll();
+  initializeProductFilters();
+  initializeCardScrollCtas();
+  initializeNavToggle();
   initializeOrderForm();
 });
 
-// Funcionalidad del formulario de pedido
+function initializeLazyLoading() {
+  if (!('IntersectionObserver' in window)) return;
+
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const img = entry.target;
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+      observer.unobserve(img);
+    });
+  });
+
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    imageObserver.observe(img);
+  });
+}
+
+function initializeSmoothScroll() {
+  const scrollTriggers = document.querySelectorAll('[data-scroll]');
+  scrollTriggers.forEach(trigger => {
+    trigger.addEventListener('click', event => {
+      const targetSelector = trigger.dataset.scroll;
+      const target = document.querySelector(targetSelector);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function initializeProductFilters() {
+  const buttons = document.querySelectorAll('.product-filters__button');
+  const cards = document.querySelectorAll('.product-card');
+  if (!buttons.length || !cards.length) return;
+
+  const applyFilter = (filter) => {
+    cards.forEach(card => {
+      const matchesCategory = card.dataset.category === filter;
+      const matchesLigero = card.dataset.ligero === 'true';
+      const shouldShow = filter === 'todos' || matchesCategory || (filter === 'ligero' && matchesLigero);
+      card.classList.toggle('is-hidden', !shouldShow);
+    });
+  };
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const currentFilter = button.dataset.filter;
+      buttons.forEach(btn => {
+        const isActive = btn === button;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+      applyFilter(currentFilter);
+    });
+  });
+
+  applyFilter('todos');
+}
+
+function initializeCardScrollCtas() {
+  document.querySelectorAll('.product-card__cta, .order-highlights__card').forEach(element => {
+    element.addEventListener('click', () => {
+      const targetSelector = element.dataset.scroll;
+      if (!targetSelector) return;
+      const target = document.querySelector(targetSelector);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function initializeNavToggle() {
+  const burger = document.querySelector('.nav__burger');
+  const menu = document.querySelector('.nav__menu');
+  if (!burger || !menu) return;
+
+  burger.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('is-open');
+    burger.classList.toggle('is-open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  menu.querySelectorAll('a[data-scroll]').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
 function initializeOrderForm() {
   const form = document.getElementById('orderForm');
   if (!form) return;
 
-  // Botones de cantidad
   document.querySelectorAll('.quantity-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -46,21 +117,19 @@ function initializeOrderForm() {
       if (!input) return;
 
       if (btn.classList.contains('quantity-btn--plus')) {
-        input.value = parseInt(input.value) + 1;
+        input.value = String((parseInt(input.value, 10) || 0) + 1);
       } else if (btn.classList.contains('quantity-btn--minus')) {
-        const currentValue = parseInt(input.value);
+        const currentValue = parseInt(input.value, 10) || 0;
         if (currentValue > 0) {
-          input.value = currentValue - 1;
+          input.value = String(currentValue - 1);
         }
       }
 
-      // Disparar evento change para actualizar resumen
       input.dispatchEvent(new Event('change', { bubbles: true }));
       updateOrderSummary();
     });
   });
 
-  // Actualizar resumen cuando cambian las cantidades
   document.querySelectorAll('.quantity-input').forEach(input => {
     input.addEventListener('change', () => {
       updateOrderSummary();
@@ -68,30 +137,43 @@ function initializeOrderForm() {
     });
 
     input.addEventListener('input', (e) => {
-      if (e.target.value < 0) {
-        e.target.value = 0;
+      if (parseInt(e.target.value, 10) < 0) {
+        e.target.value = '0';
       }
       updateOrderSummary();
       validateMinOrder(e.target);
     });
   });
 
-  // Envío del formulario
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     handleFormSubmit(form);
   });
 
-  // Actualizar fecha mínima para entrega (hoy + 1 día)
+  form.addEventListener('reset', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.quantity-input').forEach(input => {
+        input.value = '0';
+        input.classList.remove('quantity-input--error');
+        const errorMsg = input.parentElement.querySelector('.error-message');
+        if (errorMsg) {
+          errorMsg.remove();
+        }
+      });
+      updateOrderSummary();
+    }, 0);
+  });
+
   const fechaInput = document.getElementById('fecha-entrega');
   if (fechaInput) {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     fechaInput.min = tomorrow.toISOString().split('T')[0];
   }
+
+  updateOrderSummary();
 }
 
-// Actualizar resumen del pedido
 function updateOrderSummary() {
   const summaryContent = document.getElementById('orderSummaryContent');
   const summaryTotal = document.getElementById('orderSummaryTotal');
@@ -103,7 +185,7 @@ function updateOrderSummary() {
   let totalPieces = 0;
 
   document.querySelectorAll('.quantity-input').forEach(input => {
-    const quantity = parseInt(input.value) || 0;
+    const quantity = parseInt(input.value, 10) || 0;
     if (quantity > 0) {
       const productName = input.dataset.productName;
       const productType = input.dataset.productType;
@@ -119,10 +201,10 @@ function updateOrderSummary() {
   if (selectedProducts.length === 0) {
     summaryContent.innerHTML = '<p class="order-summary__empty">Selecciona productos para ver el resumen</p>';
     summaryTotal.style.display = 'none';
+    totalPiecesEl.textContent = '0';
     return;
   }
 
-  // Agrupar por tipo
   const grouped = {};
   selectedProducts.forEach(product => {
     if (!grouped[product.type]) {
@@ -151,15 +233,13 @@ function updateOrderSummary() {
   summaryTotal.style.display = 'flex';
 }
 
-// Validar pedido mínimo
 function validateMinOrder(input) {
   const minOrder = input.dataset.minOrder;
   if (!minOrder) return;
 
-  const quantity = parseInt(input.value) || 0;
-  if (quantity > 0 && quantity < parseInt(minOrder)) {
+  const quantity = parseInt(input.value, 10) || 0;
+  if (quantity > 0 && quantity < parseInt(minOrder, 10)) {
     input.classList.add('quantity-input--error');
-    // Mostrar mensaje de error
     let errorMsg = input.parentElement.querySelector('.error-message');
     if (!errorMsg) {
       errorMsg = document.createElement('span');
@@ -176,23 +256,20 @@ function validateMinOrder(input) {
   }
 }
 
-// Manejar envío del formulario
 function handleFormSubmit(form) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
-  // Validar que hay productos seleccionados
-  const totalPieces = parseInt(document.getElementById('totalPieces')?.textContent || 0);
+  const totalPieces = parseInt(document.getElementById('totalPieces')?.textContent || '0', 10);
   if (totalPieces === 0) {
     alert('Por favor, selecciona al menos un producto para realizar tu pedido.');
     return;
   }
 
-  // Validar pedidos mínimos de especialidades
   let hasError = false;
   document.querySelectorAll('.quantity-input[data-min-order]').forEach(input => {
-    const quantity = parseInt(input.value) || 0;
-    const minOrder = parseInt(input.dataset.minOrder);
+    const quantity = parseInt(input.value, 10) || 0;
+    const minOrder = parseInt(input.dataset.minOrder, 10);
     if (quantity > 0 && quantity < minOrder) {
       hasError = true;
     }
@@ -203,10 +280,9 @@ function handleFormSubmit(form) {
     return;
   }
 
-  // Construir el email
   const selectedProducts = [];
   document.querySelectorAll('.quantity-input').forEach(input => {
-    const quantity = parseInt(input.value) || 0;
+    const quantity = parseInt(input.value, 10) || 0;
     if (quantity > 0) {
       selectedProducts.push({
         nombre: input.dataset.productName,
@@ -231,7 +307,6 @@ function handleFormSubmit(form) {
   }
   emailBody += `\nPRODUCTOS PEDIDOS:\n`;
   
-  // Agrupar por tipo
   const grouped = {};
   selectedProducts.forEach(product => {
     if (!grouped[product.tipo]) {
@@ -249,15 +324,12 @@ function handleFormSubmit(form) {
 
   emailBody += `\nTOTAL: ${document.getElementById('totalPieces')?.textContent || 0} piezas\n`;
 
-  // Crear mailto link
   const subject = encodeURIComponent('Nuevo Pedido de Tamales - CALLITAE');
   const body = encodeURIComponent(emailBody);
   const mailtoLink = `mailto:contacto@callitae.com?subject=${subject}&body=${body}`;
 
-  // Abrir cliente de email
   window.location.href = mailtoLink;
 
-  // Mostrar mensaje de confirmación
   setTimeout(() => {
     alert('¡Gracias por tu pedido! Si tu cliente de email no se abrió, por favor envía un correo a contacto@callitae.com con los detalles de tu pedido.');
   }, 500);

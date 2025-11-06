@@ -67,7 +67,6 @@
 - Diseñar cards de ofertas que puedan activarse después
 - No mostrar sección hasta tener contenido
 
-\\\\
 **Mitigación Reactiva**:
 - Agregar sección cuando información esté disponible
 
@@ -158,7 +157,3 @@
 3. **Documentación Exhaustiva**: Registrar todas las decisiones y supuestos
 4. **Versionamiento**: Mantener versiones del proyecto para rollback si es necesario
 5. **Testing Continuo**: Probar cada bloque antes de avanzar al siguiente
-
-
-
-

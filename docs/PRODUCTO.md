@@ -109,3 +109,11 @@ Proporcionar un producto artesanal elaborado con ingredientes selectos, técnica
 - Compradores de tamales para ocasiones especiales
 - Público que valora la autenticidad y tradición
 
+## 7. POLÍTICAS DE SERVICIO
+
+- **Pedidos para eventos**: Banquetes, celebraciones familiares, festividades corporativas
+- **Pedidos empresariales**: Desayunos ejecutivos, reuniones internas, regalos gastronómicos
+- **Entrega**: Solo envíos a domicilio (definir cobertura y costos en coordinación con el cliente)
+- **Pedido mínimo**: 6 piezas para línea ligera y especialidades
+- **Reservas de temporada**: Productos en Nogada (septiembre) y Ponche (diciembre) requieren pedido anticipado
+
