@@ -58,23 +58,27 @@ const seccionesPedido = [
   {
     id: 'salado',
     titulo: 'Tamales Gourmet Salados',
-    descripcion: 'Sabores tradicionales con ingredientes premium y sazón artesanal.'
+    descripcion: 'Sabores tradicionales con ingredientes premium y sazón artesanal.',
+    tab: 'Salados'
   },
   {
     id: 'dulce',
     titulo: 'Tamales Gourmet Dulces',
-    descripcion: 'Postres envueltos en hoja que sorprenden en cualquier mesa.'
+    descripcion: 'Postres envueltos en hoja que sorprenden en cualquier mesa.',
+    tab: 'Dulces'
   },
   {
     id: 'especialidad',
     titulo: 'Especialidades',
     descripcion: 'Creaciones exclusivas para impresionar a tus invitados.',
-    nota: 'Pedido mínimo 6 piezas por sabor de especialidad'
+    nota: 'Pedido mínimo 6 piezas por sabor de especialidad',
+    tab: 'Especialidades'
   },
   {
     id: 'temporada',
     titulo: 'Productos de Temporada',
-    descripcion: 'Sabores icónicos disponibles en fechas especiales (Nogada, Ponche).'
+    descripcion: 'Sabores icónicos disponibles en fechas especiales (Nogada, Ponche).',
+    tab: 'Temporada'
   }
 ];
 
@@ -158,17 +162,17 @@ function renderProductoCard(producto) {
   `;
 }
 
-function renderFormularioProductos(productosPorCategoria) {
-  return seccionesPedido.map(seccion => {
+function renderProductPanels(productosPorCategoria) {
+  return seccionesPedido.map((seccion, index) => {
     const productos = productosPorCategoria[seccion.id] || [];
-    if (!productos.length) {
-      return '';
-    }
 
     return `
-      <div class="form-section">
-        <h4 class="form-section__title">${seccion.titulo}</h4>
-        ${seccion.nota ? `<p class="form-section__note">${seccion.nota}</p>` : ''}
+      <div class="product-panel ${index === 0 ? 'is-active' : ''}" data-panel="${seccion.id}">
+        <div class="product-panel__header">
+          <h5>${seccion.titulo}</h5>
+          <p>${seccion.descripcion}</p>
+        </div>
+        ${seccion.nota ? `<div class="product-panel__note">${seccion.nota}</div>` : ''}
         <div class="products-selector">
           ${productos.map(producto => `
             <div class="product-selector-item ${producto.categoria === 'especialidad' ? 'product-selector-item--special' : ''} ${producto.categoria === 'temporada' ? 'product-selector-item--seasonal' : ''}">
@@ -212,6 +216,14 @@ export function renderApp() {
     acc[producto.categoria].push(producto);
     return acc;
   }, {});
+
+  const productTabs = seccionesPedido.map((seccion, index) => `
+    <button type="button" class="product-tabs__button ${index === 0 ? 'is-active' : ''}" data-panel="${seccion.id}" aria-pressed="${index === 0}">
+      ${seccion.tab}
+    </button>
+  `).join('');
+
+  const productPanels = renderProductPanels(productosPorCategoria);
 
   app.innerHTML = `
     <header class="header">
@@ -309,65 +321,83 @@ export function renderApp() {
             </div>
 
             <form id="orderForm" class="order-form" novalidate>
-              <div class="form-section">
-                <h4 class="form-section__title">Datos de contacto</h4>
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label for="nombre" class="form-label">Nombre completo *</label>
-                    <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
+              <div class="order-form__main">
+                <section class="form-card form-card--contact">
+                  <div class="form-card__header">
+                    <h4>Datos de contacto</h4>
+                    <p>Confírmanos dónde y cuándo quieres recibir tus tamales.</p>
                   </div>
-                  <div class="form-group">
-                    <label for="email" class="form-label">Correo electrónico *</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label for="nombre" class="form-label">Nombre completo *</label>
+                      <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email" class="form-label">Correo electrónico *</label>
+                      <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="telefono" class="form-label">Teléfono *</label>
+                      <input type="tel" id="telefono" name="telefono" class="form-input" placeholder="55 0000 0000" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="direccion" class="form-label">Dirección de entrega *</label>
+                      <textarea id="direccion" name="direccion" class="form-input form-textarea" rows="3" placeholder="Calle, número, colonia, alcaldía" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="fecha-entrega" class="form-label">Fecha de entrega deseada *</label>
+                      <input type="date" id="fecha-entrega" name="fecha-entrega" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="comentarios" class="form-label">Comentarios para el equipo</label>
+                      <textarea id="comentarios" name="comentarios" class="form-input form-textarea" rows="3" placeholder="¿Evento, número de invitados, alergias, horarios?"></textarea>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="telefono" class="form-label">Teléfono *</label>
-                    <input type="tel" id="telefono" name="telefono" class="form-input" placeholder="55 0000 0000" required>
+                </section>
+
+                <section class="form-card form-card--catalog">
+                  <div class="form-card__header">
+                    <h4>Selecciona tus tamales</h4>
+                    <p>Explora cada categoría, ajusta cantidades y combina sabores para tu pedido.</p>
                   </div>
-                  <div class="form-group">
-                    <label for="direccion" class="form-label">Dirección de entrega *</label>
-                    <textarea id="direccion" name="direccion" class="form-input form-textarea" rows="3" placeholder="Calle, número, colonia, alcaldía" required></textarea>
+                  <div class="product-tabs" role="tablist">
+                    ${productTabs}
                   </div>
-                  <div class="form-group">
-                    <label for="fecha-entrega" class="form-label">Fecha de entrega deseada *</label>
-                    <input type="date" id="fecha-entrega" name="fecha-entrega" class="form-input" required>
+                  <div class="product-panels">
+                    ${productPanels}
                   </div>
-                  <div class="form-group">
-                    <label for="comentarios" class="form-label">Comentarios para el equipo</label>
-                    <textarea id="comentarios" name="comentarios" class="form-input form-textarea" rows="3" placeholder="¿Evento, número de invitados, alergias, horarios?"></textarea>
+                  <div class="form-card__footnote">Pedidos elaborados bajo encargo. Sugerimos solicitar con al menos 48 horas de anticipación.</div>
+                  <div class="form-checkbox-group form-checkbox-group--inline">
+                    <label class="form-checkbox">
+                      <input type="checkbox" id="version-ligera" name="version-ligera" class="form-checkbox-input">
+                      <span class="form-checkbox-label">Quiero todos los sabores en versión ligeros y saludables</span>
+                      <span class="form-checkbox-note">Harinas alternativas, endulzados con dátil o ciruela pasa. Pedido mínimo 6 piezas.</span>
+                    </label>
                   </div>
-                </div>
+                </section>
               </div>
 
-              ${renderFormularioProductos(productosPorCategoria)}
-
-              <div class="form-section">
-                <div class="form-checkbox-group">
-                  <label class="form-checkbox">
-                    <input type="checkbox" id="version-ligera" name="version-ligera" class="form-checkbox-input">
-                    <span class="form-checkbox-label">Quiero todos los sabores en versión ligeros y saludables</span>
-                    <span class="form-checkbox-note">Elaborados con harina de avena, almendra o amaranto. Pedido mínimo 6 piezas por sabor.</span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-section">
-                <div class="order-summary" id="orderSummary">
-                  <h4 class="order-summary__title">Resumen de tu pedido</h4>
-                  <div class="order-summary__content" id="orderSummaryContent">
-                    <p class="order-summary__empty">Selecciona productos para calcular tu pedido.</p>
+              <aside class="order-form__sidebar">
+                <section class="form-card form-card--summary">
+                  <div class="form-card__header">
+                    <h4>Resumen de tu pedido</h4>
+                    <p>Verifica cantidades y sabores antes de enviarnos tu solicitud.</p>
                   </div>
-                  <div class="order-summary__total" id="orderSummaryTotal" style="display: none;">
-                    <span class="order-summary__total-label">Total piezas</span>
-                    <span class="order-summary__total-value" id="totalPieces">0</span>
+                  <div class="order-summary" id="orderSummary">
+                    <div class="order-summary__content" id="orderSummaryContent">
+                      <p class="order-summary__empty">Selecciona productos para calcular tu pedido.</p>
+                    </div>
+                    <div class="order-summary__total" id="orderSummaryTotal" style="display: none;">
+                      <span class="order-summary__total-label">Total piezas</span>
+                      <span class="order-summary__total-value" id="totalPieces">0</span>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="btn btn--submit">Enviar pedido</button>
-                <button type="reset" class="btn btn--reset">Limpiar selección</button>
-              </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn--submit">Enviar pedido</button>
+                    <button type="reset" class="btn btn--reset">Limpiar selección</button>
+                  </div>
+                </section>
+              </aside>
             </form>
           </div>
         </div>

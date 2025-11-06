@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeSmoothScroll();
   initializeProductFilters();
   initializeCardScrollCtas();
+  initializeProductTabs();
   initializeNavToggle();
   initializeOrderForm();
 });
@@ -81,6 +82,27 @@ function initializeCardScrollCtas() {
       const target = document.querySelector(targetSelector);
       if (!target) return;
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function initializeProductTabs() {
+  const tabButtons = document.querySelectorAll('.product-tabs__button');
+  const panels = document.querySelectorAll('.product-panel');
+  if (!tabButtons.length || !panels.length) return;
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetPanel = button.dataset.panel;
+      tabButtons.forEach(btn => {
+        const isActive = btn === button;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+
+      panels.forEach(panel => {
+        panel.classList.toggle('is-active', panel.dataset.panel === targetPanel);
+      });
     });
   });
 }
