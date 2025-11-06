@@ -182,20 +182,25 @@ function renderProductPanels(productosPorCategoria) {
                 ${producto.pedidoMinimo ? `<span class="product-selector-item__badge">Pedido mínimo ${producto.pedidoMinimo} pzas</span>` : ''}
                 ${producto.categoria === 'temporada' && producto.temporada ? `<span class="product-selector-item__badge product-selector-item__badge--seasonal">${producto.temporada}</span>` : ''}
               </div>
-              <div class="product-selector-item__controls">
-                <button type="button" class="quantity-btn quantity-btn--minus" data-product="${producto.id}">−</button>
-                <input
-                  type="number"
-                  id="${producto.id}"
-                  name="${producto.id}"
-                  class="quantity-input"
-                  min="0"
-                  value="0"
-                  data-product-name="${producto.nombre}"
-                  data-product-type="${productTypeLabels[producto.categoria]}"
-                  ${producto.pedidoMinimo ? `data-min-order="${producto.pedidoMinimo}"` : ''}
-                >
-                <button type="button" class="quantity-btn quantity-btn--plus" data-product="${producto.id}">+</button>
+              <div class="product-selector-item__footer">
+                <div class="product-selector-item__controls">
+                  <button type="button" class="quantity-btn quantity-btn--minus" data-product="${producto.id}">−</button>
+                  <input
+                    type="number"
+                    id="${producto.id}"
+                    name="${producto.id}"
+                    class="quantity-input"
+                    min="0"
+                    value="0"
+                    data-product-name="${producto.nombre}"
+                    data-product-type="${productTypeLabels[producto.categoria]}"
+                    ${producto.pedidoMinimo ? `data-min-order="${producto.pedidoMinimo}"` : ''}
+                  >
+                  <button type="button" class="quantity-btn quantity-btn--plus" data-product="${producto.id}">+</button>
+                </div>
+                <button type="button" class="product-selector-item__cta" data-scroll="#orderFormSection">
+                  Ir al pedido
+                </button>
               </div>
             </div>
           `).join('')}
