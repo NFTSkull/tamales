@@ -516,16 +516,6 @@ img {
       background: linear-gradient(135deg, #9C27B0 0%, #E91E63 100%);
       color: $white;
     }
-
-    &--light {
-      background: rgba(76, 175, 80, 0.15);
-      color: #2E7D32;
-    }
-
-    &--min {
-      background: rgba(31, 31, 31, 0.08);
-      color: $dark-text;
-    }
   }
 
   &__description {

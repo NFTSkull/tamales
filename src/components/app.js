@@ -114,14 +114,6 @@ function renderBadges(producto) {
     badges.push({ label: producto.temporada, modifier: 'seasonal' });
   }
 
-  if (producto.pedidoMinimo) {
-    badges.push({ label: `Min. ${producto.pedidoMinimo} pzas`, modifier: 'min' });
-  }
-
-  if (producto.ligeroDisponible) {
-    badges.push({ label: 'Versión ligera', modifier: 'light' });
-  }
-
   if (!badges.length) {
     return '';
   }
