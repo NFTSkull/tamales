@@ -88,24 +88,43 @@ const productTypeLabels = {
 const pedidosDestacados = [
   {
     titulo: 'Eventos y celebraciones',
-    descripcion: 'Banquetes, bodas, bautizos, cumpleaños y reuniones familiares con entrega puntual.'
+    descripcion: 'Banquetes, bodas, bautizos, cumpleaños y reuniones familiares con entrega puntual.',
+    icon: `
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="12" width="22" height="15" rx="3" stroke="currentColor" stroke-width="1.6" />
+        <path d="M10 12V8C10 6.89543 10.8954 6 12 6H20C21.1046 6 22 6.89543 22 8V12" stroke="currentColor" stroke-width="1.6" />
+        <path d="M5 16H27" stroke="currentColor" stroke-width="1.6" />
+        <circle cx="11" cy="21" r="1.6" fill="currentColor" />
+        <circle cx="21" cy="21" r="1.6" fill="currentColor" />
+      </svg>`
   },
   {
     titulo: 'Empresas y desayunos',
-    descripcion: 'Desayunos ejecutivos, lanzamientos y regalos corporativos con menú personalizado.'
+    descripcion: 'Desayunos ejecutivos, lanzamientos y regalos corporativos con menú personalizado.',
+    icon: `
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.6" />
+        <path d="M11 6V4.5C11 3.67157 11.6716 3 12.5 3H19.5C20.3284 3 21 3.67157 21 4.5V6" stroke="currentColor" stroke-width="1.6" />
+        <path d="M11 15H21" stroke="currentColor" stroke-width="1.6" />
+        <path d="M11 11H21" stroke="currentColor" stroke-width="1.6" />
+        <path d="M11 19H18" stroke="currentColor" stroke-width="1.6" />
+      </svg>`
   },
   {
     titulo: 'Envíos a domicilio',
-    descripcion: 'Entrega directa a tu puerta dentro del área de cobertura. Programa tu fecha y horario.'
+    descripcion: 'Entrega directa a tu puerta dentro del área de cobertura. Programa tu fecha y horario.',
+    icon: `
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 11H19C20.1046 11 21 11.8954 21 13V22H10C8.34315 22 7 20.6569 7 19V11Z" stroke="currentColor" stroke-width="1.6" />
+        <path d="M21 15H24.5C25.8807 15 27 16.1193 27 17.5V22H21" stroke="currentColor" stroke-width="1.6" />
+        <circle cx="11" cy="24" r="2" stroke="currentColor" stroke-width="1.6" />
+        <circle cx="23" cy="24" r="2" stroke="currentColor" stroke-width="1.6" />
+      </svg>`
   }
 ];
 
 function renderBadges(producto) {
   const badges = [];
-
-  if (producto.categoria === 'especialidad') {
-    badges.push({ label: 'Especialidad', modifier: 'special' });
-  }
 
   if (producto.temporada) {
     badges.push({ label: producto.temporada, modifier: 'seasonal' });
@@ -269,9 +288,9 @@ export function renderApp() {
             <h2 class="order-highlights__title">Pedidos para cada ocasión</h2>
             <p class="order-highlights__subtitle">Agenda tus tamales para eventos, empresas o desayuno en casa. Siempre con entrega a domicilio.</p>
             <div class="order-highlights__grid">
-              ${pedidosDestacados.map((destacado, index) => `
+              ${pedidosDestacados.map(destacado => `
                 <article class="order-highlights__card" data-scroll="#orderFormSection">
-                  <span class="order-highlights__mark" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+                  <span class="order-highlights__icon" aria-hidden="true">${destacado.icon}</span>
                   <div class="order-highlights__content">
                     <h3 class="order-highlights__card-title">${destacado.titulo}</h3>
                     <p class="order-highlights__card-text">${destacado.descripcion}</p>

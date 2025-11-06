@@ -595,8 +595,8 @@ img {
   &__card {
     position: relative;
     display: flex;
-    align-items: flex-start;
-    gap: 1.75rem;
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 1.9rem);
     padding: clamp(1.8rem, 4vw, 2.6rem);
     border-radius: 28px;
     background:
@@ -628,20 +628,22 @@ img {
     }
   }
 
-  &__mark {
-    font-family: $font-heading;
-    font-size: clamp(1.25rem, 2.6vw, 1.9rem);
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    color: $primary-orange;
-    min-width: 58px;
+  &__icon {
+    width: clamp(58px, 8vw, 72px);
+    height: clamp(58px, 8vw, 72px);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 209, 92, 0.45));
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 16px 35px rgba(255, 154, 0, 0.25);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(255, 154, 0, 0.35);
-    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.65), 0 12px 20px rgba(255, 154, 0, 0.18);
+    color: $primary-orange;
+
+    svg {
+      width: clamp(28px, 6vw, 32px);
+      height: clamp(28px, 6vw, 32px);
+    }
   }
 
   &__content {
