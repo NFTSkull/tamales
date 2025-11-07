@@ -148,15 +148,21 @@ function renderBadges(producto) {
 }
 
 function renderProductoCard(producto) {
+  const categoriaEtiqueta = productTypeLabels[producto.categoria];
   return `
     <article class="product-card" data-category="${producto.categoria}" data-ligero="${producto.ligeroDisponible}">
+      <div class="product-card__glow"></div>
       <div class="product-card__content">
         <div class="product-card__header">
-          <h3 class="product-card__name">${producto.nombre}</h3>
+          <span class="product-card__category">${categoriaEtiqueta}</span>
           ${renderBadges(producto)}
         </div>
+        <h3 class="product-card__name">${producto.nombre}</h3>
         <p class="product-card__description">${producto.descripcion}</p>
-        <button class="product-card__cta" type="button" data-scroll="#orderFormSection">Agregar al pedido</button>
+        <div class="product-card__actions">
+          <button class="product-card__cta" type="button" data-scroll="#orderFormSection">Agregar al pedido</button>
+          <button class="product-card__cta product-card__cta--ghost" type="button" data-scroll="#pedidos">Personalizar pedido</button>
+        </div>
       </div>
     </article>
   `;
@@ -182,25 +188,20 @@ function renderProductPanels(productosPorCategoria) {
                 ${producto.pedidoMinimo ? `<span class="product-selector-item__badge">Pedido mínimo ${producto.pedidoMinimo} pzas</span>` : ''}
                 ${producto.categoria === 'temporada' && producto.temporada ? `<span class="product-selector-item__badge product-selector-item__badge--seasonal">${producto.temporada}</span>` : ''}
               </div>
-              <div class="product-selector-item__footer">
-                <div class="product-selector-item__controls">
-                  <button type="button" class="quantity-btn quantity-btn--minus" data-product="${producto.id}">−</button>
-                  <input
-                    type="number"
-                    id="${producto.id}"
-                    name="${producto.id}"
-                    class="quantity-input"
-                    min="0"
-                    value="0"
-                    data-product-name="${producto.nombre}"
-                    data-product-type="${productTypeLabels[producto.categoria]}"
-                    ${producto.pedidoMinimo ? `data-min-order="${producto.pedidoMinimo}"` : ''}
-                  >
-                  <button type="button" class="quantity-btn quantity-btn--plus" data-product="${producto.id}">+</button>
-                </div>
-                <button type="button" class="product-selector-item__cta" data-scroll="#orderFormSection">
-                  Ir al pedido
-                </button>
+              <div class="product-selector-item__controls">
+                <button type="button" class="quantity-btn quantity-btn--minus" data-product="${producto.id}">−</button>
+                <input
+                  type="number"
+                  id="${producto.id}"
+                  name="${producto.id}"
+                  class="quantity-input"
+                  min="0"
+                  value="0"
+                  data-product-name="${producto.nombre}"
+                  data-product-type="${productTypeLabels[producto.categoria]}"
+                  ${producto.pedidoMinimo ? `data-min-order="${producto.pedidoMinimo}"` : ''}
+                >
+                <button type="button" class="quantity-btn quantity-btn--plus" data-product="${producto.id}">+</button>
               </div>
             </div>
           `).join('')}
