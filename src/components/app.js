@@ -148,21 +148,15 @@ function renderBadges(producto) {
 }
 
 function renderProductoCard(producto) {
-  const categoriaEtiqueta = productTypeLabels[producto.categoria];
   return `
     <article class="product-card" data-category="${producto.categoria}" data-ligero="${producto.ligeroDisponible}">
-      <div class="product-card__glow"></div>
       <div class="product-card__content">
         <div class="product-card__header">
-          <span class="product-card__category">${categoriaEtiqueta}</span>
+          <h3 class="product-card__name">${producto.nombre}</h3>
           ${renderBadges(producto)}
         </div>
-        <h3 class="product-card__name">${producto.nombre}</h3>
         <p class="product-card__description">${producto.descripcion}</p>
-        <div class="product-card__actions">
-          <button class="product-card__cta" type="button" data-scroll="#orderFormSection">Agregar al pedido</button>
-          <button class="product-card__cta product-card__cta--ghost" type="button" data-scroll="#pedidos">Personalizar pedido</button>
-        </div>
+        <button class="product-card__cta" type="button" data-scroll="#orderFormSection">Agregar al pedido</button>
       </div>
     </article>
   `;
