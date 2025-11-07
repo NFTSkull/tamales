@@ -573,42 +573,6 @@ img {
   color: $muted-text;
 }
 
-.promociones {
-  background: linear-gradient(135deg, rgba(255, 154, 0, 0.14), rgba(255, 209, 92, 0.14));
-
-  &__content {
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  &__title {
-    color: $primary-orange;
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 1rem;
-  }
-
-  &__subtitle {
-    color: $muted-text;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-
-  &__badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2.5rem;
-    border-radius: 999px;
-    background: #111111;
-    color: $white;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    box-shadow: 0 18px 35px rgba(17, 17, 17, 0.25);
-  }
-}
-
 // ------------------------------
 // Sección pedidos destacados
 // ------------------------------
@@ -1473,6 +1437,73 @@ img {
 }
 
 .about-cta__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero--promociones {
+  background: linear-gradient(135deg, rgba(17, 17, 17, 0.92), rgba(255, 154, 0, 0.35));
+
+  .hero__badge {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.promociones-coming {
+  background: $white-bg;
+}
+
+.promociones-coming__content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    color: $primary-orange;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+  }
+}
+
+.promociones-coming__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  li {
+    background: rgba(255, 154, 0, 0.08);
+    border-left: 4px solid $primary-orange;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    color: $dark-text;
+    text-align: left;
+  }
+}
+
+.promociones-coming__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: 999px;
+  background: $primary-orange;
+  color: $white;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.promociones-coming__actions {
   display: flex;
   gap: 1rem;
   justify-content: center;
