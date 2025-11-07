@@ -235,6 +235,7 @@ export function renderApp() {
           <li><a href="#inicio" data-scroll="#inicio">Inicio</a></li>
           <li><a href="/nosotros.html">Nosotros</a></li>
           <li><a href="#productos" data-scroll="#productos">Productos</a></li>
+          <li><a href="#promociones" data-scroll="#promociones">Promociones</a></li>
           <li><a href="#pedidos" data-scroll="#pedidos">Pedidos</a></li>
         </ul>
         <a href="#pedidos" class="nav__cta btn btn--outline" data-scroll="#pedidos">Hacer pedido</a>
@@ -293,6 +294,14 @@ export function renderApp() {
           </div>
 
           <div class="products-grid__note">Todos los pedidos se preparan bajo encargo. Recomendamos solicitar con 48 horas de anticipación.</div>
+        </div>
+      </section>
+
+      <section id="promociones" class="section promociones">
+        <div class="container promociones__content">
+          <h2 class="promociones__title">Promociones</h2>
+          <p class="promociones__subtitle">Estamos preparando paquetes especiales y promociones para consentirte pronto.</p>
+          <div class="promociones__badge">Próximamente</div>
         </div>
       </section>
 
@@ -420,6 +429,7 @@ export function renderApp() {
               <li><a href="#inicio" data-scroll="#inicio">Inicio</a></li>
               <li><a href="#productos" data-scroll="#productos">Catálogo</a></li>
               <li><a href="/nosotros.html">Nosotros</a></li>
+              <li><a href="#promociones" data-scroll="#promociones">Promociones</a></li>
               <li><a href="#pedidos" data-scroll="#pedidos">Pedidos</a></li>
             </ul>
           </div>
